@@ -31,6 +31,8 @@ public class Tutor {
     private String numero;
     private String complemento;
     private String observacao;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
 
 }

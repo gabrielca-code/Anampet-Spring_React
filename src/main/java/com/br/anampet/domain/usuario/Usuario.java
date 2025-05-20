@@ -1,11 +1,11 @@
 package com.br.anampet.domain.usuario;
 
+import com.br.anampet.controller.usuario.UsuarioCadastrarDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.service.annotation.GetExchange;
 
 @Entity(name = "usuario")
 @Table(name = "usuarios")
@@ -27,8 +27,18 @@ public class Usuario {
     private String email;
 
     @Column(unique = true)
-    private String login;
     private String cpf;
+
+    @Column(unique = true)
+    private String login;
     private String senha;
 
+    public Usuario(UsuarioCadastrarDTO usuarioDto) {
+        this.nome = usuarioDto.nome();
+        this.crmv = usuarioDto.crmv();
+        this.email = usuarioDto.email();
+        this.login = usuarioDto.login();
+        this.senha = usuarioDto.senha();
+        this.cpf = usuarioDto.cpf();
+    }
 }

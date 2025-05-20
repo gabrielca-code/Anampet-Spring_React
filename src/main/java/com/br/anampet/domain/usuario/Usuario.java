@@ -19,8 +19,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
+
+    @Column(unique = true)
     private String crmv;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String login;
     private String cpf;
     private String senha;

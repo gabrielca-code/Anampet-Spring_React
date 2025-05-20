@@ -1,5 +1,6 @@
 package com.br.anampet.controller.usuario;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,7 +13,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void criarUsuario() {
+    public void criarUsuario(@RequestBody @Valid UsuarioCadastrarDTO usuario) {
         System.out.println("Post Usuario");
     }
 

@@ -25,7 +25,7 @@ public class UsuarioController {
         usuarioRepository.save(usuario);
 
         var uri = uriBuilder.path("usuario/{id}").buildAndExpand(usuario.getId()).toUri();
-        return ResponseEntity.created(uri).body(usuario); //criar DTO
+        return ResponseEntity.created(uri).body(new UsuarioListarDTO(usuario));
     }
 
     @PutMapping

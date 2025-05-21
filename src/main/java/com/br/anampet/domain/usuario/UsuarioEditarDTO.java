@@ -1,11 +1,11 @@
 package com.br.anampet.domain.usuario;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record UsuarioEditarDTO(
+        @NotNull
+        Long id,
+
         @Size(min = 5, max = 100, message = "O nome deve ter entre 5 e 100 caracteres")
         String nome,
 
@@ -22,7 +22,7 @@ public record UsuarioEditarDTO(
         @Size(min = 8, max = 30, message = "O Email deve entre 8 e 30 caracteres")
         String senha,
 
-        @Pattern(regexp = "^\\d{11}]", message = "O CPF deve ser preenchido com 11 caracteres sem pontos ou hífen")
+        @Pattern(regexp = "^\\d{11}", message = "O CPF deve ser preenchido com 11 caracteres sem pontos ou hífen")
         String cpf
 ) {
 }

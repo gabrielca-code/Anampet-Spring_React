@@ -28,7 +28,7 @@ public record UsuarioCadastrarDTO(
         String senha,
 
         @NotBlank(message = "Preencha o campo CPF")
-        @Pattern(regexp = "^\\d{11}]", message = "O CPF deve ser preenchido com 11 caracteres sem pontos ou hífen")
+        @Pattern(regexp = "^\\d{11}", message = "O CPF deve ser preenchido com 11 caracteres sem pontos ou hífen")
         String cpf
 ) {
 }

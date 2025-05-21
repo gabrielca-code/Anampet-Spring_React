@@ -40,4 +40,19 @@ public class Usuario {
         this.senha = usuarioDto.senha();
         this.cpf = usuarioDto.cpf();
     }
+
+    public void editarCampos(UsuarioEditarDTO usuarioDto) {
+        if(!usuarioDto.nome().isBlank())
+            this.nome = usuarioDto.nome();
+        if(!usuarioDto.crmv().isBlank())
+            this.crmv = usuarioDto.crmv();
+        if(!usuarioDto.email().isBlank())
+            this.email = usuarioDto.email();
+        if(!usuarioDto.cpf().isBlank())
+            this.cpf = usuarioDto.cpf();
+        if(!usuarioDto.login().isBlank())
+            this.login = usuarioDto.login();
+        if(!usuarioDto.senha().isBlank())
+            this.senha = usuarioDto.senha();
+    }
 }

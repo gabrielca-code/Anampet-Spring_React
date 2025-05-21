@@ -38,8 +38,10 @@ public class UsuarioController {
     @PutMapping
     @Transactional
     public ResponseEntity editarUsuario(@RequestBody @Valid UsuarioEditarDTO usuarioDto) {
+        var usuario = usuarioRepository.getReferenceById(usuarioDto.id());
+        usuario.editarCampos(usuarioDto);
 
-        return null;
+        return ResponseEntity.ok().body(new UsuarioListarDTO(usuario));
     }
 
     @DeleteMapping("/{id}")

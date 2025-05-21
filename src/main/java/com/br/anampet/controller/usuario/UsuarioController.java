@@ -1,9 +1,11 @@
 package com.br.anampet.controller.usuario;
 
 import com.br.anampet.domain.usuario.Usuario;
+import com.br.anampet.domain.usuario.UsuarioCadastrarDTO;
+import com.br.anampet.domain.usuario.UsuarioEditarDTO;
+import com.br.anampet.domain.usuario.UsuarioListarDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +37,9 @@ public class UsuarioController {
 
     @PutMapping
     @Transactional
-    public void editarUsuario() {
-        System.out.println("Put Usuario");
+    public ResponseEntity editarUsuario(@RequestBody @Valid UsuarioEditarDTO usuarioDto) {
+
+        return null;
     }
 
     @DeleteMapping("/{id}")

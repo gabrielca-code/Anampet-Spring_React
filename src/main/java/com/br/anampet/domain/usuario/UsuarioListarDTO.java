@@ -1,7 +1,4 @@
-package com.br.anampet.controller.usuario;
-
-import com.br.anampet.domain.usuario.Usuario;
-import jakarta.validation.constraints.NotBlank;
+package com.br.anampet.domain.usuario;
 
 public record UsuarioListarDTO(
         Long id,

@@ -1,6 +1,5 @@
 package com.br.anampet.domain.usuario;
 
-import com.br.anampet.controller.usuario.UsuarioCadastrarDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -31,8 +31,24 @@ public class Tutor {
     private String numero;
     private String complemento;
     private String observacao;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
+
+    public Tutor(TutorCadastrarDTO tutorDto) {
+        this.nome = tutorDto.nome();
+        this.telefone = tutorDto.telefone();
+        this.email = tutorDto.email();
+        this.data_nascimento = tutorDto.data_nascimento();
+        this.estado = tutorDto.estado();
+        this.cidade = tutorDto.cidade();
+        this.bairro = tutorDto.bairro();
+        this.rua = tutorDto.rua();
+        this.numero = tutorDto.numero();
+        this.complemento = tutorDto.complemento();
+        this.observacao = tutorDto.observacao();
+        this.usuario = tutorDto.usuario();
+    }
 
 }

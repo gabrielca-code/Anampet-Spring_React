@@ -42,17 +42,17 @@ public class Usuario {
     }
 
     public void editarCampos(UsuarioEditarDTO usuarioDto) {
-        if(!usuarioDto.nome().isBlank())
+        if(usuarioDto.nome() != null)
             this.nome = usuarioDto.nome();
-        if(!usuarioDto.crmv().isBlank())
+        if(usuarioDto.crmv() != null)
             this.crmv = usuarioDto.crmv();
-        if(!usuarioDto.email().isBlank())
+        if(usuarioDto.email() != null)
             this.email = usuarioDto.email();
-        if(!usuarioDto.cpf().isBlank())
+        if(usuarioDto.cpf() != null)
             this.cpf = usuarioDto.cpf();
-        if(!usuarioDto.login().isBlank())
+        if(usuarioDto.login() != null)
             this.login = usuarioDto.login();
-        if(!usuarioDto.senha().isBlank())
+        if(usuarioDto.senha() != null)
             this.senha = usuarioDto.senha();
     }
 }

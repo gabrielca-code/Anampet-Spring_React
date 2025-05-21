@@ -4,6 +4,7 @@ import com.br.anampet.domain.usuario.Usuario;
 import jakarta.validation.constraints.NotBlank;
 
 public record UsuarioListarDTO(
+        Long id,
         String nome,
         String crmv,
         String email,
@@ -12,7 +13,7 @@ public record UsuarioListarDTO(
 ) {
 
     public UsuarioListarDTO(Usuario usuario) {
-        this(usuario.getNome(), usuario.getCrmv(), usuario.getEmail(), usuario.getLogin(), usuario.getCpf());
+        this(usuario.getId(), usuario.getNome(), usuario.getCrmv(), usuario.getEmail(), usuario.getLogin(), usuario.getCpf());
     }
 
 }

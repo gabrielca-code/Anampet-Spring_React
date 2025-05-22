@@ -2,6 +2,7 @@ package com.br.anampet.controller.tutor;
 
 import com.br.anampet.domain.tutor.Tutor;
 import com.br.anampet.domain.tutor.TutorCadastrarDTO;
+import com.br.anampet.domain.tutor.TutorEditarDTO;
 import com.br.anampet.domain.tutor.TutorListarDTO;
 import com.br.anampet.domain.usuario.UsuarioListarDTO;
 import jakarta.transaction.TransactionScoped;
@@ -45,8 +46,11 @@ public class TutorController {
 
     @PutMapping
     @Transactional
-    public void editarTutor() {
-        System.out.println("Put Tutor");
+    public ResponseEntity editarTutor(@RequestBody @Valid TutorEditarDTO tutorDto) {
+        var tutor = tutorRepository.getReferenceById(tutorDto.id());
+        tutor.editarCampos(tutorDto);
+
+        return ResponseEntity.ok().body(new TutorListarDTO(tutor));
     }
 
     @DeleteMapping("/{id}")

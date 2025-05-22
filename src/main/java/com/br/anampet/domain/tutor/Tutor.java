@@ -47,8 +47,29 @@ public class Tutor {
         this.rua = tutorDto.rua();
         this.numero = tutorDto.numero();
         this.complemento = tutorDto.complemento();
-        this.observacao = tutorDto.observacao();
         this.usuario = tutorDto.usuario();
     }
 
+    public void editarCampos(TutorEditarDTO tutorDto) {
+        if(tutorDto.nome() != null)
+            this.nome = tutorDto.nome();
+        if(tutorDto.telefone() != null)
+            this.telefone = tutorDto.telefone();
+        if(tutorDto.email() != null)
+            this.email = tutorDto.email();
+        if(tutorDto.data_nascimento() != null)
+            this.data_nascimento = tutorDto.data_nascimento();
+        if(tutorDto.estado() != null)
+            this.estado = tutorDto.estado();
+        if(tutorDto.cidade() != null)
+            this.cidade = tutorDto.cidade();
+        if(tutorDto.bairro() != null)
+            this.bairro = tutorDto.bairro();
+        if(tutorDto.rua() != null)
+            this.rua = tutorDto.rua();
+        if(tutorDto.numero() != null)
+            this.numero = tutorDto.numero();
+        if(tutorDto.complemento() != null)
+            this.complemento = tutorDto.complemento();
+    }
 }

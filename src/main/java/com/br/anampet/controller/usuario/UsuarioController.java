@@ -7,6 +7,7 @@ import com.br.anampet.domain.usuario.UsuarioListarDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,9 +19,12 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping("/{id}")
     public ResponseEntity obterUsuario(@PathVariable Long id) {
-        var usuario = usuarioRepository.getReferenceById(id);
+        var usuario = usuarioService.obterUsuarioUnico(id);
 
         return ResponseEntity.ok().body(new UsuarioListarDTO(usuario));
     }

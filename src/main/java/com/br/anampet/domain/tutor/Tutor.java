@@ -46,7 +46,7 @@ public class Tutor implements Serializable {
         this.telefone = tutorDto.telefone();
         this.email = tutorDto.email();
         this.data_nascimento = tutorDto.data_nascimento();
-        this.estado = tutorDto.estado().getCodigo_estado();
+        setEstado(tutorDto.estado());
         this.cidade = tutorDto.cidade();
         this.bairro = tutorDto.bairro();
         this.rua = tutorDto.rua();
@@ -65,7 +65,7 @@ public class Tutor implements Serializable {
         if(tutorDto.data_nascimento() != null)
             this.data_nascimento = tutorDto.data_nascimento();
         if(tutorDto.estado() != null)
-            this.estado = tutorDto.estado().getCodigo_estado();
+            setEstado(tutorDto.estado());
         if(tutorDto.cidade() != null)
             this.cidade = tutorDto.cidade();
         if(tutorDto.bairro() != null)
@@ -82,5 +82,8 @@ public class Tutor implements Serializable {
         return Estado.valueOf(this.estado);
     }
 
-
+    public void setEstado(Estado codigo_estado) {
+        if(codigo_estado != null)
+            this.estado = codigo_estado.getCodigo_estado();
+    }
 }

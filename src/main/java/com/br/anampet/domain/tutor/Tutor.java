@@ -1,6 +1,7 @@
 package com.br.anampet.domain.tutor;
 
 import com.br.anampet.domain.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity(name = "tutor")
@@ -24,8 +26,10 @@ public class Tutor implements Serializable {
     private String nome;
     private String telefone;
     private String email;
-    private Date data_nascimento;
-    private String estado;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT")
+    private Instant data_nascimento;
+    private int estado;
     private String cidade;
     private String bairro;
     private String rua;
@@ -42,7 +46,7 @@ public class Tutor implements Serializable {
         this.telefone = tutorDto.telefone();
         this.email = tutorDto.email();
         this.data_nascimento = tutorDto.data_nascimento();
-        this.estado = tutorDto.estado();
+        this.estado = tutorDto.estado().getCodigo_estado();
         this.cidade = tutorDto.cidade();
         this.bairro = tutorDto.bairro();
         this.rua = tutorDto.rua();
@@ -61,7 +65,7 @@ public class Tutor implements Serializable {
         if(tutorDto.data_nascimento() != null)
             this.data_nascimento = tutorDto.data_nascimento();
         if(tutorDto.estado() != null)
-            this.estado = tutorDto.estado();
+            this.estado = tutorDto.estado().getCodigo_estado();
         if(tutorDto.cidade() != null)
             this.cidade = tutorDto.cidade();
         if(tutorDto.bairro() != null)
@@ -73,4 +77,10 @@ public class Tutor implements Serializable {
         if(tutorDto.complemento() != null)
             this.complemento = tutorDto.complemento();
     }
+
+    public Estado getEstado() {
+        return Estado.valueOf(this.estado);
+    }
+
+
 }

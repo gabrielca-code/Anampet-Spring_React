@@ -1,5 +1,7 @@
 package com.br.anampet.domain.usuario;
 
+import com.br.anampet.domain.tutor.Tutor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "usuario")
 @Table(name = "usuarios")
@@ -33,6 +37,10 @@ public class Usuario implements Serializable {
     @Column(unique = true)
     private String login;
     private String senha;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Tutor> tutores = new ArrayList<Tutor>();
 
     public Usuario(UsuarioCadastrarDTO usuarioDto) {
         this.nome = usuarioDto.nome();

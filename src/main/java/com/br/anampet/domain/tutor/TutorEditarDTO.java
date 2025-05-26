@@ -3,6 +3,7 @@ package com.br.anampet.domain.tutor;
 import com.br.anampet.domain.usuario.Usuario;
 import jakarta.validation.constraints.*;
 
+import java.time.Instant;
 import java.util.Date;
 
 public record TutorEditarDTO(
@@ -17,8 +18,8 @@ public record TutorEditarDTO(
 
         @Email(message = "O email deve ser em um formato válido.")
         String email,
-        Date data_nascimento,
-        String estado,
+        Instant data_nascimento,
+        Estado estado,
         String cidade,
         String bairro,
         String rua,

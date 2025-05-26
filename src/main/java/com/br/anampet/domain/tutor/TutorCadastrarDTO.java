@@ -3,6 +3,7 @@ package com.br.anampet.domain.tutor;
 import com.br.anampet.domain.usuario.Usuario;
 import jakarta.validation.constraints.*;
 
+import java.time.Instant;
 import java.util.Date;
 
 public record TutorCadastrarDTO(
@@ -16,10 +17,10 @@ public record TutorCadastrarDTO(
         @Email(message = "O email deve ser em um formato válido.")
         String email,
 
-        Date data_nascimento,
+        Instant data_nascimento,
 
         @NotBlank(message = "O estado do tutor deve ser preenchido.")
-        String estado,
+        Estado estado,
 
         @NotBlank(message = "A cidade do tutor deve ser preenchido.")
         String cidade,

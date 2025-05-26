@@ -5,6 +5,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.time.Instant;
 import java.util.Date;
 
 public record TutorListarDTO(
@@ -12,8 +13,8 @@ public record TutorListarDTO(
     String nome,
     String telefone,
     String email,
-    Date data_nascimento,
-    String estado,
+    Instant data_nascimento,
+    Estado estado,
     String cidade,
     String bairro,
     String rua,

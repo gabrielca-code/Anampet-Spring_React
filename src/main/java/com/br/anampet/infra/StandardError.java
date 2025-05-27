@@ -10,7 +10,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Getter
 @Setter
-public class StandardErrorException implements Serializable {
+public class StandardError implements Serializable {
 
     private Instant timestamp;
     private Integer status;

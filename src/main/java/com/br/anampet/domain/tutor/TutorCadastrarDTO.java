@@ -4,7 +4,6 @@ import com.br.anampet.domain.usuario.Usuario;
 import jakarta.validation.constraints.*;
 
 import java.time.Instant;
-import java.util.Date;
 
 public record TutorCadastrarDTO(
         @NotBlank(message = "O nome do tutor não pode estar vazio.")

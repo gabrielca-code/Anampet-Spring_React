@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 
 @Entity(name = "tutor")
 @Table(name = "tutores")

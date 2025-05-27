@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class TratarErros {
+public class DataIntegrityException extends RuntimeException {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity errosDados(DataIntegrityViolationException ex) {

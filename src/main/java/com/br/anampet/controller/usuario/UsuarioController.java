@@ -32,9 +32,7 @@ public class UsuarioController {
     @PostMapping
     @Transactional
     public ResponseEntity criarUsuario(@RequestBody @Valid UsuarioCadastrarDTO usuarioDto, UriComponentsBuilder uriBuilder) {
-        var usuario = new Usuario(usuarioDto);
-        usuarioRepository.save(usuario);
-
+        var usuario = usuarioService.criarUsuario(usuarioDto);
         var uri = uriBuilder.path("usuario/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).body(new UsuarioListarDTO(usuario));
     }

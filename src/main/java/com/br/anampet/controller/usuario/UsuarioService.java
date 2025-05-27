@@ -1,6 +1,8 @@
 package com.br.anampet.controller.usuario;
 
 import com.br.anampet.domain.usuario.Usuario;
+import com.br.anampet.domain.usuario.UsuarioCadastrarDTO;
+import com.br.anampet.domain.usuario.UsuarioListarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,9 @@ public class UsuarioService {
         Optional<Usuario> obj = usuarioRepository.findById(id);
         return obj.get();
     }
-    public void cadastrarUsuario() {}
+    public Usuario criarUsuario(UsuarioCadastrarDTO usuarioDto) {
+        return usuarioRepository.save(new Usuario(usuarioDto));
+    }
 
     public void editarUsuario() {}
 

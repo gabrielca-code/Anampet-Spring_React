@@ -3,6 +3,7 @@ package com.br.anampet.controller.tutor;
 import com.br.anampet.domain.tutor.Tutor;
 import com.br.anampet.domain.tutor.TutorCadastrarDTO;
 import com.br.anampet.domain.tutor.TutorEditarDTO;
+import com.br.anampet.infra.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class TutorService {
 
     public Tutor obterTutor(Long id) {
         var tutor = tutorRepository.findById(id);
-        return tutor.get();
+        return tutor.orElseThrow(() -> new NotFoundException(id));
     }
 
     public Tutor criarTutor(TutorCadastrarDTO tutorDto) {

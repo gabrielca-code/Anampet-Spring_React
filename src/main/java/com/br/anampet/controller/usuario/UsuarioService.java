@@ -4,6 +4,7 @@ import com.br.anampet.domain.usuario.Usuario;
 import com.br.anampet.domain.usuario.UsuarioCadastrarDTO;
 import com.br.anampet.domain.usuario.UsuarioEditarDTO;
 import com.br.anampet.domain.usuario.UsuarioListarDTO;
+import com.br.anampet.infra.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class UsuarioService {
 
     public Usuario obterUsuarioUnico(Long id) {
         Optional<Usuario> obj = usuarioRepository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new NotFoundException(id));
     }
     public Usuario criarUsuario(UsuarioCadastrarDTO usuarioDto) {
         return usuarioRepository.save(new Usuario(usuarioDto));

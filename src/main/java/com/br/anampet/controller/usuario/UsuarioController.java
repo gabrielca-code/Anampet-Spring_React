@@ -6,11 +6,14 @@ import com.br.anampet.domain.usuario.UsuarioEditarDTO;
 import com.br.anampet.domain.usuario.UsuarioListarDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("usuario")
@@ -21,6 +24,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @GetMapping
+    public ResponseEntity<List> obterUsuarios() {
+        var listaUsuarios = usuarioService.obterUsuarios();
+        return ResponseEntity.ok().body(listaUsuarios.stream().map(UsuarioListarDTO::new).toList());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity obterUsuario(@PathVariable Long id) {

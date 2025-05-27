@@ -19,7 +19,7 @@ public record TutorCadastrarDTO(
 
         Instant data_nascimento,
 
-        @NotBlank(message = "O estado do tutor deve ser preenchido.")
+        @NotNull(message = "O estado do tutor deve ser preenchido.")
         Estado estado,
 
         @NotBlank(message = "A cidade do tutor deve ser preenchido.")

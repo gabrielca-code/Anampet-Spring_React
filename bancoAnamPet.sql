@@ -1,6 +1,15 @@
 CREATE DATABASE IF NOT EXISTS anampet;
 USE anampet;
 
+DROP TABLE IF EXISTS prescricoes;
+DROP TABLE IF EXISTS prontuarios;
+DROP TABLE IF EXISTS vacinas;
+DROP TABLE IF EXISTS pesagens;
+DROP TABLE IF EXISTS consultas;
+DROP TABLE IF EXISTS pets;
+DROP TABLE IF EXISTS tutores;
+DROP TABLE IF EXISTS usuarios;
+
 CREATE TABLE IF NOT EXISTS usuarios(
 	id INT AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
@@ -23,8 +32,8 @@ CREATE TABLE IF NOT EXISTS tutores(
     bairro VARCHAR(255) NOT NULL,
     rua VARCHAR(255) NOT NULL,
     numero VARCHAR(255) NOT NULL,
-    complemento VARCHAR(255) NOT NULL,
-    observacao VARCHAR(255) NOT NULL,
+    complemento VARCHAR(255),
+    observacao VARCHAR(255),
     id_usuario INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)

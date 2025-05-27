@@ -14,21 +14,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("tutor")
 public class TutorController {
 
     @Autowired
-    private TutorRepository tutorRepository;
+    private TutorService tutorService;
 
     @GetMapping
-    public void obterListaTutores() {
-        System.out.println("Get Tutores");
+    public ResponseEntity<List> obterListaTutores() {
+        return ResponseEntity.ok().body(tutorService.obterTutores().stream().map(TutorListarDTO::new).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity obterUnicoTutor(@PathVariable Long id) {
-        var tutor = tutorRepository.getReferenceById(id);
+        var tutor = tutorService.obterTutor(id);
 
         return ResponseEntity.ok().body(new TutorListarDTO(tutor));
     }
@@ -36,9 +38,7 @@ public class TutorController {
     @PostMapping
     @Transactional
     public ResponseEntity criarTutor(@RequestBody @Valid TutorCadastrarDTO tutorDto, UriComponentsBuilder uriBuilder) {
-        var tutor = new Tutor(tutorDto);
-        tutorRepository.save(tutor);
-
+        var tutor = tutorService.criarTutor(tutorDto);
         var uri = uriBuilder.path("tutor/{id}").buildAndExpand(tutor.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new TutorListarDTO(tutor));
@@ -47,8 +47,7 @@ public class TutorController {
     @PutMapping
     @Transactional
     public ResponseEntity editarTutor(@RequestBody @Valid TutorEditarDTO tutorDto) {
-        var tutor = tutorRepository.getReferenceById(tutorDto.id());
-        tutor.editarCampos(tutorDto);
+        var tutor = tutorService.editarTutor(tutorDto);
 
         return ResponseEntity.ok().body(new TutorListarDTO(tutor));
     }
@@ -56,7 +55,7 @@ public class TutorController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluirTutor(@PathVariable Long id) {
-        tutorRepository.deleteById(id);
+        tutorService.excluirTutor(id);
 
         return ResponseEntity.noContent().build();
     }

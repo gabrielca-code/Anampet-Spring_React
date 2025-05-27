@@ -33,7 +33,7 @@ public class TutorService {
         return tutor;
     }
 
-    public void excluirTUtor(Long id) {
+    public void excluirTutor(Long id) {
         tutorRepository.deleteById(id);
     }
 

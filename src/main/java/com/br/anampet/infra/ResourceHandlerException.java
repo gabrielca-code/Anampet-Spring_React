@@ -33,7 +33,7 @@ public class ResourceHandlerException extends RuntimeException {
     public ResponseEntity<StandardError> errosDados(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String error = "Erro na validação dos dados!";
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError err = new StandardError(Instant.now(), status.value(), error, ex.getMessage(), request.getRequestURI());
+        StandardError err = new StandardError(Instant.now(), status.value(), error, ex.getFieldError().getDefaultMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 

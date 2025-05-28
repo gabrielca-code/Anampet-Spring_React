@@ -1,6 +1,8 @@
 package com.br.anampet.domain.tutor;
 
 import com.br.anampet.domain.usuario.Usuario;
+import jakarta.persistence.Column;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.*;
 
 import java.time.Instant;

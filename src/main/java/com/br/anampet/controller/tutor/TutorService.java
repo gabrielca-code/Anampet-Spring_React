@@ -20,8 +20,7 @@ public class TutorService {
     }
 
     public Tutor obterTutor(Long id) {
-        var tutor = tutorRepository.findById(id);
-        return tutor.orElseThrow(() -> new NotFoundException(id));
+        return buscarTutorValidandoNotFound(id);
     }
 
     public Tutor criarTutor(TutorCadastrarDTO tutorDto) {
@@ -29,13 +28,19 @@ public class TutorService {
     }
 
     public Tutor editarTutor(TutorEditarDTO tutorDto) {
-        var tutor = tutorRepository.getReferenceById(tutorDto.id());
+        var tutor = buscarTutorValidandoNotFound(tutorDto.id());
         tutor.editarCampos(tutorDto);
+
         return tutor;
     }
 
     public void excluirTutor(Long id) {
+        buscarTutorValidandoNotFound(id);
         tutorRepository.deleteById(id);
+    }
+
+    private Tutor buscarTutorValidandoNotFound (Long id) {
+        return tutorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
 }

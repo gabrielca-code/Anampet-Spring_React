@@ -5,6 +5,7 @@ import com.br.anampet.domain.usuario.UsuarioCadastrarDTO;
 import com.br.anampet.domain.usuario.UsuarioEditarDTO;
 import com.br.anampet.infra.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,10 @@ public class UsuarioService {
         return buscarUsuarioValidandoNotFound(id);
     }
     public Usuario criarUsuario(UsuarioCadastrarDTO usuarioDto) {
-        return usuarioRepository.save(new Usuario(usuarioDto));
+        var usuario = new Usuario(usuarioDto);
+        usuario.setSenha(encriptandoSenha(usuario.getSenha()));
+
+        return usuarioRepository.save(usuario);
     }
 
     public Usuario editarUsuario(UsuarioEditarDTO usuarioDto) {
@@ -40,6 +44,11 @@ public class UsuarioService {
 
     private Usuario buscarUsuarioValidandoNotFound(Long id) {
         return usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+    }
+
+    private String encriptandoSenha(String senha) {
+        var encriptador = new BCryptPasswordEncoder();
+        return encriptador.encode(senha);
     }
 
 }

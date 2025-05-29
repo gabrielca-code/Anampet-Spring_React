@@ -26,6 +26,7 @@ public class ResourceHandlerException extends RuntimeException {
         String error = "Erro na validação dos dados!";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, ex.getMessage(), request.getRequestURI());
+        //fazer retornar todos os erros
         return ResponseEntity.status(status).body(err);
     }
 

@@ -7,9 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity(name = "usuario")
@@ -18,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,5 +68,21 @@ public class Usuario implements Serializable {
             this.login = usuarioDto.login();
         if(usuarioDto.senha() != null)
             this.senha = usuarioDto.senha();
+    }
+
+
+    @Override //De UserDetails, lista todas roles do usuário
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
     }
 }

@@ -1,4 +1,4 @@
-package com.br.anampet.infra;
+package com.br.anampet.controller.login;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -15,8 +15,7 @@ import java.time.ZoneOffset;
 @Service //define a classe a ser mapeada na camada de serviço do spring
 public class TokenService {
 
-    @Value("${api.security.token.secret}") //define que o valor será pego em determinado local, no caso, no application.properties dado o caminha passado
-    // (no caso tbm, será uma variável de ambiente)
+    @Value("${api.security.token.secret}") //define que o valor será pego em determinado local, no caso, no application.properties dado o caminha passado, sendo ela uma variável de ambiente
     private String secret;
 
     private static final String ISSUER = "API Anampet";
@@ -34,9 +33,7 @@ public class TokenService {
         }
     }
 
-    public String getSubject(String tokenJWT) {
-        //String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXUyJ9.eyJpc3MiOiJhdXRoMCJ9.AbIJTDMFc7yUa5MhvcP03nJPyCPzZtQcGEp-zWfOkEE";
-        //DecodedJWT decodedJWT;
+    public String getSubject(String tokenJWT) { //Valida o token na requisicao
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret); //define qual algoritmo foi usado pra criar o token
             return JWT.require(algorithm) //verifica um JWT dado um algoritmo

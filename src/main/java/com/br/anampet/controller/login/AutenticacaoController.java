@@ -1,7 +1,6 @@
 package com.br.anampet.controller.login;
 
 import com.br.anampet.domain.usuario.Usuario;
-import com.br.anampet.infra.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -14,22 +14,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration //mapeia pelo spring como uma classe de configuração
-@EnableWebSecurity //permite a classe realizar ações sobre web security
+@Configuration //Mapeia para o spring como uma classe de configuração
+@EnableWebSecurity //Habilita a classe realizar ações sobre web security
 public class SecurityConfiguration {
 
     @Autowired
-    private SecurityFilter securityFilter; //classe criada para validar o token nos requests
+    private SecurityFilter securityFilter; //Classe criada para validar o token nos requests
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { //cria um canal de filtro de segurança
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {                //cria um canal de filtro de segurança
         return http.csrf(csrf -> csrf.disable())
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //muda a forma que a sessão é mantida, no caso stateless
-                .authorizeHttpRequests(req -> { //define quais regras para requisições
-                    req.requestMatchers(HttpMethod.POST, "/login").permitAll(); //define que para o POST em /login seja permito requisições de todos
-                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll(); //define que para o POST em /login seja permito requisições de todos
-                    req.anyRequest().authenticated(); //define que para qualquer outro, seja necessario autenticar
-                }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //define que o filtro executado posteriormente seja do SecurityFilter passando um objeto UsernamePasswordETC
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))                     //muda a forma que a sessão é mantida
+                .authorizeHttpRequests(req -> {                                                                         //define quais regras para requisições
+                    req.requestMatchers(HttpMethod.POST, "/login").permitAll();                               //permite todos post requests para /login
+                    req.requestMatchers(HttpMethod.POST, "/usuario").permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll(); //permite todos requests para o swagger
+                    req.anyRequest().authenticated();                                                                   //Define que para qualquer outro request seja necessario autenticar
+                }).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)                          //define que o filtro executado seja do SecurityFilter
                 .build();
     }
 

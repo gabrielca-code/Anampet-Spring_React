@@ -24,7 +24,6 @@ public class SecurityFilter extends OncePerRequestFilter { //herda da classe que
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException { //metodo padrao sobrescrito
-        System.out.println("Chamando filtro");
         var tokenJWT = recuperarToken(request); //pegando o token pela requisição
 
         if(tokenJWT != null) {
@@ -32,7 +31,6 @@ public class SecurityFilter extends OncePerRequestFilter { //herda da classe que
             var usuario = usuarioRepository.findByLogin(subject); //busca a referencia do dono do token no BD
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities()); //cria a autenticação via classe padrão de autenticação UsernamePasswordETC
             SecurityContextHolder.getContext().setAuthentication(authentication); //mantem a autenticação dado o contexto de autencação do usuario
-            System.out.println("Logado");
         }
 
         filterChain.doFilter(request, response);

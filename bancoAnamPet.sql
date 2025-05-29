@@ -21,6 +21,9 @@ CREATE TABLE IF NOT EXISTS usuarios(
     PRIMARY KEY(id)
 );
 
+SELECT * FROM usuarios;
+UPDATE usuarios SET senha = "$2a$10$/oYgkwhtZtosMFzEe25zjeCo/aoD/ZoSQgeREE4LvGpPfQ.EkPQEq";
+
 CREATE TABLE IF NOT EXISTS tutores(
 	id INT AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,

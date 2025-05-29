@@ -19,7 +19,7 @@ public class TokenService {
     // (no caso tbm, será uma variável de ambiente)
     private String secret;
 
-    private static final String ISSUER = "API Voll.med";
+    private static final String ISSUER = "API Anampet";
 
     public String gerarToken(Usuario usuario) { //Gera um token a ser utilizado para autenticar o usuário nas requisições
         try {

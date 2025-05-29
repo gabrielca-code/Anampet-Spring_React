@@ -40,11 +40,6 @@ public class UsuarioController {
         return ResponseEntity.created(uri).body(new UsuarioListarDTO(usuario));
     }
 
-    @PostMapping("/logar")
-    public ResponseEntity logar() {
-        return ResponseEntity.ok().body("");
-    }
-
     @PutMapping
     @Transactional
     public ResponseEntity editarUsuario(@RequestBody @Valid UsuarioEditarDTO usuarioDto) {
